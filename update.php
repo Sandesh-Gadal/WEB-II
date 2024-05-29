@@ -1,36 +1,38 @@
 <?php
 $con = new mysqli("localhost","root","","bca");
-if(isset($_GET["ID"])){
-
+$id = $_GET["id"];
+echo "$id";
+if(!$con){
+    die("Hi");
+}
 $query = "Select * from post where ID =$id";
 $result= $con->query($query);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
+$data=$result->fetch_assoc();
         ?>
             <div class="container">
-                <form >
+                <form method="post" >
                     <h3>Edit Post</h3>
-                    <label for="heading">Heading:</label> <input type="text" name="heading" value="<?=$row["heading"]?>">
-                    Sub_heading: <input type="text" name="subheading" value="<?=$row["sub_heading"]?>">
-                    Description: <textarea name="desp" rows="4" cols="48"><?= $row["description"]?></textarea>
-                    Thumbnail: <input type="text" name="thumbnail" value="<?= $row["thumbnail"]?>">
+                    <label for="heading">Heading:</label> <input type="text" name="heading" value="<?=$data["heading"]?>">
+                    Sub_heading: <input type="text" name="subheading" value="<?=$data["sub_heading"]?>">
+                    Description: <textarea name="desp" rows="4" cols="48"><?= $data["description"]?></textarea>
+                    Thumbnail: <input type="text" name="thumbnail" value="<?= $data["thumbnail"]?>">
                     <input type="submit" id="submit" value="Update ">
                 </form>
             </div>
             <?php
-        }
-    }
-}
-if(isset($_GET["heading"])){
-    $id = $_GET["ID"];
-    $heading = $_GET["heading"];
-    $subheading = $_GET["subheading"];
-    $description = $_GET["desp"];
-    $thumbnail = $_GET["thumbnail"];
-    $updatequery = "update post heading='$heading',sub_heading='$subheading',description='$description',thumbnail='$thumbnail' where ID= $id";
+
+if(isset($_POST["heading"])){
+  
+    $heading = $_POST["heading"];
+    $subheading = $_POST["subheading"];
+    $description = $_POST["desp"];
+    $thumbnail = $_POST["thumbnail"];
+    $updatequery = "update post set heading='$heading',sub_heading='$subheading',description='$description',thumbnail='$thumbnail' where ID= $id";
+    // $con->query($updatequery);
     if( $con->query($updatequery)){
         echo "Post Updated";
     }else{
+        echo $con->error;
         echo "Failed to Update";
     }
 }

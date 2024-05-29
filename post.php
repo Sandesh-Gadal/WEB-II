@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore aspernatur illum id consequatur dolorum odio ea. Tempora, totam omnis modi illo impedit, explicabo repellat ipsam eum cumque, quasi ipsa commodi!</p>
     <span >Published at:<?=$row["created_at"]?></span>
     <span>By:<?=$row["created_by"]?></span><br/>
-    <button><a href="update.php?ID=<?=$row["ID"]?>">Edit</a></button>
+    <button><a href="update.php?id=<?=$row["ID"]?>">Edit</a></button>
 </div>
 <?php
         } 
