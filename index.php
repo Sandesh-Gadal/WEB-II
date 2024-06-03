@@ -17,6 +17,7 @@ $result = $con->query($query);
 
 
 <?php
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
        ?>
@@ -34,6 +35,9 @@ if ($result->num_rows > 0) {
         } 
     } else {
         echo "No Record Found";
+    }
+    if(isset($_SESSION['message'])){
+        echo $_SESSION['message'];
     }
     ?>
     </tbody>

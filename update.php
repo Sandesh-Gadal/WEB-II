@@ -1,4 +1,5 @@
 <?php
+session_start();
 $con = new mysqli("localhost","root","","bca");
 $id = $_GET["id"];
 echo "$id";
@@ -30,12 +31,16 @@ if(isset($_POST["heading"])){
     $updatequery = "update post set heading='$heading',sub_heading='$subheading',description='$description',thumbnail='$thumbnail' where ID= $id";
     // $con->query($updatequery);
     if( $con->query($updatequery)){
-        echo "Post Updated";
+       $_SESSION["user"]['message']="Data Updated";
+       $_SESSION["user"]['updated_by']="Sandesh";
+       $_SESSION["user"]['updated_on']=date("Y-m-D");
+        header("Location:post.php");
     }else{
         echo $con->error;
         echo "Failed to Update";
     }
 }
+
         ?>
         <style>
             body{

@@ -1,5 +1,10 @@
 <?php
-$con = new mysqli("localhost","root","","bca");
+
+include "db.php";
+// require "db.php";
+$con= db_connect();
+session_start();
+// $con = new mysqli("localhost","root","","bca");
 $query = "select * from post";
 $result = $con->query($query);
 ?>
@@ -16,6 +21,9 @@ if ($result->num_rows > 0) {
     <span >Published at:<?=$row["created_at"]?></span>
     <span>By:<?=$row["created_by"]?></span><br/>
     <button><a href="update.php?id=<?=$row["ID"]?>">Edit</a></button>
+    <?php  $hid = $row["ID"]?>
+    <button ><a href="controller.php?ID=<?=$row["ID"]?>">Delete</a></button>
+
 </div>
 <?php
         } 
@@ -23,8 +31,30 @@ if ($result->num_rows > 0) {
         echo "No Record Found";
     }
     ?>
+    <div class="updated">
+        <?php
+ if(isset($_SESSION['user'])){
+    // echo $_SESSION['message'];
+    // $_SESSION['message']="";
+    // echo  $_SESSION['updated_by'];
+    // $_SESSION['updated_by']="";
+    // echo $_SESSION['updated_on'];
+    // $_SESSION['updated_on']="";
+     
+    // echo $_SESSION["user"];
+   
+
+}
+
+?>
     </div>
-<style>
+    </div>
+ <style>
+    /* .updated{
+        font-size: 20px;
+        display: block;
+        flex: 1 1 auto;
+    } */
     body{
         font-family: Arial, Helvetica, sans-serif;
     }
@@ -60,4 +90,3 @@ if ($result->num_rows > 0) {
        
     }
 </style>
-
