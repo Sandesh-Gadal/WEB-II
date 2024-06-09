@@ -11,11 +11,14 @@ if($file){
     echo "Error Opening Files";
 }
 ?>
-<br/><a href="filedelete.php">Delete FIle</a>
-<form>
- <textarea rows="20" cols="50" name="text"></textarea><br/>
- <input type="submit" name="submit" value="Write">    
-</form>
+<div class="container">
+
+    <br/><a href="filedelete.php">Delete FIle</a>
+    <form>
+        <textarea rows="20" cols="50" name="text"></textarea><br/>
+        <input type="submit" name="submit" value="Write">    
+    </form>
+</div>
 
 <?php
 if(isset($_GET['text'])){
@@ -31,3 +34,4 @@ if(isset($_GET['text'])){
 
 
 ?>
+ 
