@@ -7,7 +7,7 @@ $con = new mysqli("localhost","root","","bca");
    Note Title : <input type="text" name="note_title">
    Subject Name : <input type="text" name="subject_name">
    Subject Category : <input type="text" name="subject_category">
-   File name : <input type="file" name="file_name">
+   File name : 
    Description : <textarea name="description" rows="10" cols="50"></textarea>
    Status : <input type="text" name="status" id="status">
    <input type="submit" name="submit" value="submit">
